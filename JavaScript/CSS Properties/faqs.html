@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ Accordion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+  <div class="w-full max-w-2xl">
+    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+      Frequently Asked Questions
+    </h2>
+
+    <div class="space-y-4">
+
+      <!-- Item -->
+      <div class="bg-white rounded-xl shadow">
+        <button onclick="showAnswer(1)"
+          class="accordion-btn w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-gray-800 hover:bg-gray-50 transition">
+          <span>What is Tailwind CSS?</span>
+          <svg class="icon w-5 h-5 transition-transform duration-300"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div class="accordion-content transition-all duration-300" id="answer_1">
+          <p class="px-6 pb-5 text-gray-600">
+            Tailwind CSS is a utility-first CSS framework that lets you build
+            modern, responsive interfaces rapidly using utility classes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="bg-white rounded-xl shadow">
+        <button onclick="showAnswer(2)"
+          class="accordion-btn w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-gray-800 hover:bg-gray-50 transition">
+          <span>Is Tailwind CSS free?</span>
+          <svg class="icon w-5 h-5 transition-transform duration-300"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300" id="answer_2">
+          <p class="px-6 pb-5 text-gray-600">
+            Yes. Tailwind CSS is open-source and free to use for personal and
+            commercial projects.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item -->
+      <div class="bg-white rounded-xl shadow">
+        <button onclick="showAnswer(3)"
+          class="accordion-btn w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-gray-800 hover:bg-gray-50 transition">
+          <span>Can I customize Tailwind?</span>
+          <svg class="icon w-5 h-5 transition-transform duration-300"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="2"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300" id="answer_3">
+          <p class="px-6 pb-5 text-gray-600">
+            Absolutely! You can customize colors, spacing, typography, breakpoints,
+            and much more through the Tailwind configuration file.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="js/custom.js"></script>
+</body>
+</html>

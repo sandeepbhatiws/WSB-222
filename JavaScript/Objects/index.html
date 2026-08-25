@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        var userInfos = {};  // Empty Object
+
+        const infos = {
+            name : 'Testing',
+            email : 'testing@gmail.com',
+            name : 'User'
+        }
+
+        userInfos.name = 'Test';
+        userInfos.name = 'Testing';
+        infos.email = 'sandeep@gmail.com'
+
+        //console.log(userInfos)
+        //console.log(infos.email)
+
+        const getUserInfo = ({ email, name }) => {
+           // console.log(email)
+           // console.log(name)
+        } 
+
+        getUserInfo(infos)
+        
+
+        var getAllUsers = [
+            {
+                name : 'User 1',
+                email : 'User1@gamil.com',
+                age : 32
+            },
+            {
+                email : 'User2@gamil.com',
+                name : 'User 2',
+                age : 25
+            },
+            {
+                age : 40,
+                name : 'User 3',
+                email : 'User3@gamil.com',
+            }
+        ]
+
+        //console.log(getAllUsers[2].name)
+        
+
+        for(var i = 0; i < getAllUsers.length; i++){
+         //   console.log(getAllUsers[i].name)
+        }
+
+        for(var i in getAllUsers){
+          //  console.log(getAllUsers[i].name)
+        }
+
+        for(var data of getAllUsers){
+        //    console.log(data.email)
+        }
+
+        getAllUsers.forEach((v, i) => {
+          //  console.log(i)
+          //  console.log(v.name)
+
+            // document.write('<div>'+ v.name +'</div><div>'+ v.email +'</div>')
+
+            document.write(`
+            <div>
+                <div> ${ v.name } </div>
+                <div> ${ v.email } </div>
+            </div>
+            `);
+        })
+
+
+        const getdata = () => {
+            console.log('Hello')
+            
+            return 55;
+        }
+
+        //console.log(getdata());
+
+        var finalData = getAllUsers.filter((v) => {
+            if(v.age > 35){
+                return v;
+            }
+        })
+
+        var finalData = getAllUsers.map((v) => {
+            if(v.email == 'User2@gamil.com'){
+                v.age = 30;
+
+                return v;
+            } else {
+                return v;
+            }
+        })
+
+        console.log(finalData);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+@media only screen and (min-width: 769px) and (max-width : 1024px){
+    .budget{
+        flex-basis: 25%;
+    }
+}
+
+@media only screen and (min-width: 427px) and (max-width : 768px){
+    .budget{
+        flex-basis: 50%;
+    }
+}
+
+@media only screen and (min-width: 0px) and (max-width : 426px){
+    .budget{
+        flex-basis: 100%;
+    }
+
+    /* .inner_budget{
+        flex-direction: column;
+    } */
+    .main{
+        padding: 0px 15px;
+    }
+    
+    .budget_banner{
+        left: -25%;
+        overflow: hidden;
+        position: relative;
+    }
+    .budget_banner img{
+        width: 150%;
+    }
+}
+@media only screen and (min-width: 0px) and (max-width : 321px){
+    .outer_header{
+        flex-direction: column;
+    }
+    .callus{
+        margin-top: 15px;
+    }
+}

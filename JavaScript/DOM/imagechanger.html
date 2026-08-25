@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    
+    <div class="max-w-4xl m-auto flex justify-center">
+        <div class="mt-4 mb-4">
+            <img src="images/budget_5.png" id="image"/>
+        </div>
+    </div>
+
+    <div class="max-w-4xl m-auto flex">
+        <div class="mt-4 mb-4 w-full">
+            <img src="images/budget_1.png" id="image1" onmouseover="imageChange(this)"/>
+        </div>
+
+        <div class="mt-4 mb-4 w-full">
+            <img src="images/budget_2.png" id="image2" onmouseenter="imageChange(this)"/>
+        </div>
+
+        <div class="mt-4 mb-4 w-full">
+            <img src="images/budget_3.png"  id="image3" onclick="imageChange(this)"/>
+        </div>
+
+        <div class="mt-4 mb-4 w-full">
+            <img src="images/budget_4.png"  id="image4" onclick="imageChange(this)"/>
+        </div>
+    </div>
+
+    <script src="js/custom2.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.row{
+    background: url('../images/3.jpg');
+    /* background-image: url('../images/3.jpg'); */
+    width: 1200px;
+    height: 700px;
+    border: 1px solid red;
+    background-repeat: repeat-y;
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-position: right center;
+    background-position: center;
+    background-position: left bottom;
+    /* background-size: cover; */
+}
+
+.main{
+    margin-bottom: 100px;
+    width: 1400px;
+    height: 500px;
+    border: 1px solid red;
+    background-image: url('../images/1.jpg');
+    background-position: top center;
+    background-size: 100% 100%;
+}

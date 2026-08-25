@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <title>Form Tags</title>
+</head>
+<body>
+    <form autocomplete="off">
+        <input type="text" minlength="2" maxlength="25" pattern="[a-zA-Z 0-9@]{3,15}" name="name" placeholder="Enter your name" autocomplete="off" required/>
+
+        <input type="email" name="email" placeholder="Enter your email" required="required"/>
+
+        <input type="password" placeholder="Enter your password"/>
+
+        <input type="date"/>
+        <input type="number" min="1" max="100" placeholder="Enter your number"/>
+
+        <input type="url" placeholder="Enter your URL"/>
+
+        <input type="file" accept="image/*"/>
+
+
+        <select name="course">
+            <option value="1">HTML</option>
+            <option value="2">HTML 5</option>
+            <option value="3">CSS</option>
+            <option value="4">CSS 3</option>
+        </select>
+
+        <br><br>
+
+        <textarea name="address" rows="15" cols="150"></textarea>
+
+        <br>
+        <br>
+
+        <button type="button">Click Me</button>
+        <button type="reset">Reset</button>
+        <button>Submit</button>
+    </form>    
+
+    
+
+</body>
+</html>

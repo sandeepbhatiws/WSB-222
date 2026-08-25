@@ -1,0 +1,182 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Raleway", sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+body{
+    font-family: "Raleway", sans-serif;
+}
+
+.outer_header{
+    border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+    box-sizing: border-box;
+}
+.logo img{
+    width: 200px;
+}
+.header_menu ul{
+    display: flex;
+    list-style: none;
+    gap: 50px;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.header_right button{
+    background: #123062;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 0px;
+    font-weight: 600;
+}
+
+.outer_discover{
+    background: #F2F2F6;
+}
+.inner_discover{
+    width: 1300px;
+    border: 0px solid red;
+    margin: auto;
+    padding: 50px;
+}
+.discover_heading{
+    padding: 50px;
+    box-sizing: border-box;
+    border: 0px solid red;
+    text-align: center;
+}
+.discover_heading h1{
+    font-size: 48px;
+}
+
+.outer_discover_content{
+    border: 0px solid red;
+    display: flex;
+}
+.discover_content{
+    color: white;
+    font-weight: bold;
+    width: 33.33%;
+    text-align: center;
+    padding: 180px 20px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    background-size: 100% 100%;
+}
+.image1{
+    background: url('../images/HVAC-Products.png');
+    background-size: 100% 100%;
+}
+.image2{
+    background: url("../images/Wires.png");
+    background-size: 100% 100%;
+}
+
+.outer_blog{
+    width: 100%;
+    padding: 50px 0px;
+    box-sizing: border-box;
+}
+.inner_blog{
+    width: 1300px;
+    border: 0px solid red;
+    margin: auto;
+}
+.blog_heading{
+    text-align: center;
+    color: #223D6D;
+    padding-bottom: 50px;
+}
+.blog_heading h2{
+    font-size: 35px;
+}
+.blog_section_inner{
+    display: flex;
+    border: 0px solid red;
+    /* flex-wrap: wrap;
+    flex-wrap: wrap-reverse; */
+
+    /* flex-direction: row-reverse;
+    flex-direction: column-reverse; */
+
+    /* flex-flow: row-reverse wrap; */
+
+    flex-wrap: wrap;
+
+    /* justify-content: flex-end;
+    justify-content: space-between;
+    justify-content: center;
+    justify-content: space-around;
+    justify-content: space-evenly; */
+    align-items: flex-start;
+    /* flex-direction: column; */
+
+    /* gap: 40px; */
+
+    row-gap: 20px;
+    column-gap: 15px;
+
+    /* align-items: flex-start;
+    align-items: flex-end;
+    align-items: center;
+    align-items: baseline; */
+
+    /* height: 1500px;
+    align-content: space-between; */
+}
+.content_blog{
+    border: 0px solid black;
+    /* width: 400px; */
+
+    flex-basis: 350px;
+    order: 5;
+    flex-grow: 1;
+    box-shadow: 0px 0px 3px 1px gray;
+}
+
+.grow{
+    flex-grow: 3;
+}
+.new_order_2{
+    order: 1;
+}
+
+.new_order_3{
+    order: 3;
+}
+
+
+.content_blog img{
+    width: 100%;
+}
+
+.blog_content{
+    padding: 15px;
+    box-sizing: border-box;
+}
+.blog_content h3{
+    text-align: center;
+}
+.blog_content p{
+    text-align: justify;
+    margin: 15px 0px;
+    line-height: 26px;
+}
+.blog_content button{
+    background: none;
+    border: 0px;
+    font-weight: bold;
+    color: green;
+}

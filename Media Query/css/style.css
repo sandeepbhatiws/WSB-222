@@ -1,0 +1,45 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.main{
+    width: 100%;
+    padding: 0px 50px;
+    box-sizing: border-box;
+}
+.outer_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+.callus{
+    border: 1px solid dimgray;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.outer_budget{
+    width: 100%;
+}
+.budget_banner img{
+    width: 100%;
+}
+.inner_budget{
+    display: flex;
+    flex-wrap: wrap;
+}
+.budget{
+    flex-basis: 20%;
+    flex-grow: 1;
+}
+.budget img{
+    width: 100%;
+}

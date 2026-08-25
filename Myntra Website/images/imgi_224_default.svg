@@ -1,0 +1,6 @@
+<svg class="iz-news-hub-blur-image-svg" xmlns="http://www.w3.org/2000/svg">
+                  <filter id="iz-news-hub-blur-image-filter">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10"></feGaussianBlur>
+                  </filter>
+                  <image filter="url(#iz-news-hub-blur-image-filter)" preserveAspectRatio="xMidYMid slice" href="https://assets.myntassets.com/assets/images/2021/1/29/3fa39f6c-edfe-4733-9f64-56d9bdc448fe1611931505688-Myntra-Logo-01.jpg"></image>
+                </svg>
