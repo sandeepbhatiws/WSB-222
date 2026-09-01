@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import UserForm from './UserForm'
 import UserData from './UserData'
+import { ToastContainer } from 'react-toastify';
 
 export default function HomePage() {
+
+  var getUserInfo = JSON.parse(localStorage.getItem('userInfos'));
+
+  const [userData, setUserData] = useState(getUserInfo ?? []);
+
   return (
+    <>
+    <ToastContainer/>
     <div className="min-h-screen bg-slate-100 py-10 px-4">
       <div className="max-w-4xl mx-auto space-y-10">
 
@@ -12,17 +20,18 @@ export default function HomePage() {
           <h1 className="text-2xl font-semibold text-slate-800 mb-1">User Details Form</h1>
           <p className="text-slate-500 mb-6">Fill in the details below</p>
 
-          <UserForm/>
+          <UserForm userData={userData} setUserData={setUserData}/>
         </div>
 
         {/* Table Card */}
         <div className="bg-white rounded-2xl shadow-md p-8">
           <h2 className="text-xl font-semibold text-slate-800 mb-5">User Records</h2>
 
-          <UserData/>
+          <UserData userData={userData} setUserData={setUserData}/>
         </div>
 
       </div>
     </div>
+    </>
   )
 }

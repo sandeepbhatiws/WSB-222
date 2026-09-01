@@ -1,6 +1,7 @@
 import React from 'react'
+import { countries, states } from '../locationData'
 
-export default function UserData() {
+export default function UserData({userData, setUserData}) {
     return (
         <>
             <div className="overflow-x-auto">
@@ -16,44 +17,43 @@ export default function UserData() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="border-b border-slate-100 hover:bg-slate-50">
-                            <td className="px-4 py-3 text-slate-700">Himanshu Tiwari</td>
-                            <td className="px-4 py-3 text-slate-700">himanshu@example.com</td>
-                            <td className="px-4 py-3 text-slate-700">9876543210</td>
-                            <td className="px-4 py-3 text-slate-700">India</td>
-                            <td className="px-4 py-3 text-slate-700">Rajasthan</td>
-                            <td className="px-4 py-3">
-                                <button className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-4 py-1.5 rounded-md transition-colors">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                        {
+                            userData.length > 0
+                            ?
+                            userData.map((v,i) => {
 
-                        <tr className="border-b border-slate-100 hover:bg-slate-50">
-                            <td className="px-4 py-3 text-slate-700">Priya Sharma</td>
-                            <td className="px-4 py-3 text-slate-700">priya@example.com</td>
-                            <td className="px-4 py-3 text-slate-700">9123456780</td>
-                            <td className="px-4 py-3 text-slate-700">India</td>
-                            <td className="px-4 py-3 text-slate-700">Maharashtra</td>
-                            <td className="px-4 py-3">
-                                <button className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-4 py-1.5 rounded-md transition-colors">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                                var filterCountryName = countries.filter((c) => {
+                                    if(c.id == v.country_id){
+                                        return c;
+                                    }
+                                })
 
-                        <tr className="hover:bg-slate-50">
-                            <td className="px-4 py-3 text-slate-700">John Doe</td>
-                            <td className="px-4 py-3 text-slate-700">john@example.com</td>
-                            <td className="px-4 py-3 text-slate-700">9988776655</td>
-                            <td className="px-4 py-3 text-slate-700">United States</td>
-                            <td className="px-4 py-3 text-slate-700">Delhi</td>
-                            <td className="px-4 py-3">
-                                <button className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-4 py-1.5 rounded-md transition-colors">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                                var filterStateName = states.filter((c) => {
+                                    if(c.id == v.state_id){
+                                        return c;
+                                    }
+                                })
+
+                                return(
+                                    <tr className="border-b border-slate-100 hover:bg-slate-50" key={i}>
+                                        <td className="px-4 py-3 text-slate-700">{v.name}</td>
+                                        <td className="px-4 py-3 text-slate-700">{v.email}</td>
+                                        <td className="px-4 py-3 text-slate-700">{v.mobile_number}</td>
+                                        <td className="px-4 py-3 text-slate-700">{ filterCountryName[0]?.name }</td>
+                                        <td className="px-4 py-3 text-slate-700">{ filterStateName[0]?.name }</td>
+                                        <td className="px-4 py-3">
+                                            <button className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-4 py-1.5 rounded-md transition-colors">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                            :
+                            <tr className="border-b border-slate-100 hover:bg-slate-50">
+                                <td colSpan={7} className="px-4 py-3 text-slate-700 text-center">No Record Founds !!</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { countries, states } from '../locationData'
+import { toast } from 'react-toastify'
 
-export default function UserForm() {
+export default function UserForm({userData, setUserData}) {
 
     const [countryData, setCountryData] = useState(countries)
     const [stateData, setStateData] = useState([])
 
     const filterStates = (event) => {
+        validateError(event);
 
         var filterStateData = states.filter((v,i) => {
             if(event.target.value == v.country_id){
@@ -19,9 +21,72 @@ export default function UserForm() {
 
     const [errors, setErrors] = useState([]);
 
+    const formHandler = (e) => {
+        e.preventDefault();
+
+        var form = e.target;
+        var validateForm = [];
+
+        var getFields = form.querySelectorAll('input, select')
+
+        getFields.forEach((v,i) => {
+            if(v.value == ''){
+                validateForm.push(v.name);
+            }
+        })
+
+        setErrors([...validateForm])
+
+        if(validateForm.length == 0){
+
+            var checkEmail = userData.filter((v) => {
+                if(v.email == e.target.email.value){
+                    return v;
+                }
+            })
+
+            if(checkEmail.length == 0){
+                var data = {
+                    name : e.target.name.value,
+                    email : e.target.email.value,
+                    mobile_number : e.target.mobile_number.value,
+                    country_id : e.target.country_id.value,
+                    state_id : e.target.state_id.value,
+                }
+
+                setUserData([data, ...userData]);
+                localStorage.setItem('userInfos', JSON.stringify([data, ...userData]));
+                e.target.reset();
+                
+                toast.success('Data added succussfully !');
+                
+                setStateData([])
+            } else {
+                toast.error('Account already exit with same email id !')
+            }
+
+
+            
+        }
+    }
+
+    const validateError = (event) => {
+        if(event.target.value){
+            var finalError = errors.filter((v) => {
+                if(v != event.target.name){
+                    return v
+                }
+            })
+
+            setErrors([...finalError])
+        } else {
+            setErrors([...errors, event.target.name])
+        }
+    }
+
     return (
         <>
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={ formHandler } autoComplete='off'>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label className="block text-sm font-medium text-slate-700 mb-1">
@@ -29,6 +94,7 @@ export default function UserForm() {
                         </label>
                         <input
                             type="text"
+                            onKeyUp={ validateError }
                             name='name'
                             placeholder="Enter your name"
                             className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
@@ -49,6 +115,7 @@ export default function UserForm() {
                         </label>
                         <input
                             type="email"
+                            onKeyUp={ validateError }
                             name='email'
                             placeholder="Enter your email"
                             className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
@@ -68,6 +135,8 @@ export default function UserForm() {
                         </label>
                         <input
                             type="tel"
+                            onKeyUp={ validateError }
+                            pattern='[0-9]{8,15}'
                             name='mobile_number'
                             placeholder="Enter mobile number"
                             className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
@@ -86,7 +155,7 @@ export default function UserForm() {
                             Country
                         </label>
                         <select name='country_id' className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" onChange={ filterStates }>
-                            <option>Select Country</option>
+                            <option value=''>Select Country</option>
 
                             {
                                 countryData.map((v,i) => {
@@ -110,8 +179,8 @@ export default function UserForm() {
                         <label className="block text-sm font-medium text-slate-700 mb-1">
                             State
                         </label>
-                        <select name='state_id' className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                            <option>Select state</option>
+                        <select onChange={ validateError } name='state_id' className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value=''>Select state</option>
                             {
                                 stateData.map((v,i) => {
                                     return(
@@ -133,7 +202,7 @@ export default function UserForm() {
 
                 <div className="pt-2 flex gap-3">
                     <button
-                        type="button"
+                        type="submit"
                         className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm transition-colors"
                     >
                         Submit
