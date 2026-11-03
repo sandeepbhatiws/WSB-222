@@ -9,6 +9,8 @@ import RootLayout from './Components/Common/RootLayout'
 import ProductListing from './Components/ProductListing'
 import ProductDetails from './Components/ProductDetails'
 import CartListing from './Components/CartListing'
+import Login from './Components/Login'
+import MyProfile from './Components/MyProfile'
 
 createRoot(document.getElementById('root')).render(
   <>
@@ -19,9 +21,11 @@ createRoot(document.getElementById('root')).render(
           <Route path='/' element={<Homepage/>}/>
           <Route path='about-us' element={<AboutUs/>}/>
           <Route path='contact-us' element={<ContactUs/>}/>
-          <Route path='products' element={<ProductListing/>}/>
-          <Route path='products/:slug' element={<ProductDetails/>}/>
+          <Route path='products/:slug?' element={<ProductListing/>}/>
+          <Route path='product-details/:slug' element={<ProductDetails/>}/>
           <Route path='cart' element={<CartListing/>}/>
+          <Route path='login' element={<Login/>}/>
+          <Route path='my-profile' element={<MyProfile/>}/>
         </Route>
 
       </Routes>

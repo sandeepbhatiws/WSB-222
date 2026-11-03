@@ -2,15 +2,18 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import { Outlet } from 'react-router'
+import Context from '../../Context/Context'
 
 export default function RootLayout() {
   return (
     <>
-      <Header/>
+      <Context>
+        <Header />
 
-      <Outlet/>
+        <Outlet />
 
-      <Footer/>
+        <Footer />
+      </Context>
     </>
   )
 }

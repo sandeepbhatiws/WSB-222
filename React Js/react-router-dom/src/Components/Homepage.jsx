@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import products from '../data/products'
 import ProductCard from './Common/ProductCard'
+import axios from 'axios'
 
-const categories = [
-  { name: 'Face Care', img: 'https://placehold.co/150x150/d4f4e2/1e6b4d?text=Face' },
-  { name: 'Hair Care', img: 'https://placehold.co/150x150/fde8d4/b5651d?text=Hair' },
-  { name: 'Body Care', img: 'https://placehold.co/150x150/e2d4fd/5b3ea6?text=Body' },
-  { name: 'Baby Care', img: 'https://placehold.co/150x150/fdf1d4/a67c1d?text=Baby' },
-  { name: 'Men', img: 'https://placehold.co/150x150/d4e8fd/1d5aa6?text=Men' },
-  { name: 'Gifting', img: 'https://placehold.co/150x150/fdd4e0/a61d4d?text=Gifts' },
-]
+// const categories = [
+//   { name: 'Face Care', img: 'https://placehold.co/150x150/d4f4e2/1e6b4d?text=Face' },
+//   { name: 'Hair Care', img: 'https://placehold.co/150x150/fde8d4/b5651d?text=Hair' },
+//   { name: 'Body Care', img: 'https://placehold.co/150x150/e2d4fd/5b3ea6?text=Body' },
+//   { name: 'Baby Care', img: 'https://placehold.co/150x150/fdf1d4/a67c1d?text=Baby' },
+//   { name: 'Men', img: 'https://placehold.co/150x150/d4e8fd/1d5aa6?text=Men' },
+//   { name: 'Gifting', img: 'https://placehold.co/150x150/fdd4e0/a61d4d?text=Gifts' },
+// ]
 
 const bestSellers = products.slice(0, 8)
 
@@ -37,6 +38,30 @@ const instagramImages = [
 ]
 
 export default function Homepage() {
+
+  var [categories, setCategories] = useState([]);
+  var [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://wscubetech.co/ecommerce-api/categories.php')
+    .then((result) => {
+      setCategories(result.data.data);
+    })
+    .catch(() => {
+        toast.error('Something went wrong !!')
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get('https://wscubetech.co/ecommerce-api/products.php?limit=8')
+    .then((result) => {
+      setProducts(result.data.data);
+    })
+    .catch(() => {
+        toast.error('Something went wrong !!')
+    })
+  }, [])
+
   return (
     <>
       {/* Hero section */}
@@ -68,16 +93,22 @@ export default function Homepage() {
       <section className='max-w-7xl mx-auto px-4 sm:px-6 py-12'>
         <h2 className='text-2xl font-bold text-center text-gray-800 mb-8'>Shop By Category</h2>
         <div className='grid grid-cols-3 sm:grid-cols-6 gap-4 sm:gap-6'>
-          {categories.map((cat) => (
-            <Link key={cat.name} to={'/products'} className='flex flex-col items-center gap-2 cursor-pointer group'>
-              <img
-                src={cat.img}
-                alt={cat.name}
-                className='w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-transparent group-hover:border-emerald-500 transition'
-              />
-              <span className='text-xs sm:text-sm font-medium text-gray-700 text-center'>{cat.name}</span>
-            </Link>
-          ))}
+          {categories.map((cat, index) => {
+            return(
+              index > 9 && index < 16
+              ?
+              <Link key={cat.name} to={`/products/${cat.slug}`} className='flex flex-col items-center gap-2 cursor-pointer group'>
+                <img
+                  src={ `https://placehold.co/150x150/fde8d4/b5651d?text=${cat.name}` }
+                  alt={cat.name}
+                  className='w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-transparent group-hover:border-emerald-500 transition'
+                />
+                <span className='text-xs sm:text-sm font-medium text-gray-700 text-center'>{cat.name}</span>
+              </Link>
+              :
+              ''
+            )
+          })}
         </div>
       </section>
 
@@ -100,7 +131,7 @@ export default function Homepage() {
           <Link to={'/products'} className='text-emerald-700 font-semibold text-sm hover:underline'>View All →</Link>
         </div>
         <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6'>
-          {bestSellers.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

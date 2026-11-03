@@ -1,5 +1,8 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import { toast, ToastContainer } from 'react-toastify'
+import { ContextAPI } from '../../Context/Context';
 
 const navLinks = [
   { label: 'Face Care', path: '/products' },
@@ -11,8 +14,25 @@ const navLinks = [
 ]
 
 export default function Header() {
+
+  var [categories, setCategories] = useState([]);
+
+  var { cartData, isLogin } = useContext(ContextAPI);
+
+  useEffect(() => {
+    axios.get('https://wscubetech.co/ecommerce-api/categories.php')
+    .then((result) => {
+      setCategories(result.data.data);
+    })
+    .catch(() => {
+        toast.error('Something went wrong !!')
+    })
+  }, [])
+
   return (
     <>
+      <ToastContainer />
+
       {/* Top promo strip */}
       <div className='bg-emerald-800 text-white text-center text-xs sm:text-sm py-2 px-4'>
         Get FLAT 20% OFF on your first order | Use code WELCOME20
@@ -42,25 +62,46 @@ export default function Header() {
           <div className='flex items-center gap-4 sm:gap-6 text-emerald-900 shrink-0'>
             <Link to={'/about-us'} className='hidden sm:block text-sm font-medium hover:text-emerald-600'>About Us</Link>
             <Link to={'/contact-us'} className='hidden sm:block text-sm font-medium hover:text-emerald-600'>Contact</Link>
-            <span className='cursor-pointer text-lg'>👤</span>
+
+            {
+              isLogin
+              ?
+              <Link to={ `/my-profile`}>
+                <span className='cursor-pointer text-lg'>👤</span>
+              </Link>
+              :
+              <Link to={ `/login`}>
+                <span className='cursor-pointer text-lg'>👤</span>
+              </Link>
+            }
+            
             <Link to={'/cart'} className='text-lg relative'>
               🛒
-              <span className='absolute -top-2 -right-2 bg-emerald-700 text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center'>3</span>
+              <span className='absolute -top-2 -right-2 bg-emerald-700 text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center'>{ cartData.length }</span>
             </Link>
           </div>
         </div>
 
         {/* Category nav */}
         <nav className='hidden md:flex justify-center gap-8 border-t border-gray-100 py-2 bg-emerald-50/50'>
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.path}
-              className='text-sm font-medium text-gray-700 hover:text-emerald-700'
-            >
-              {link.label}
-            </Link>
-          ))}
+          {
+            categories.map((link, index) => {
+                return(
+                  index < 10
+                  ?
+                  <Link
+                    key={link.id}
+                    to={ `products/${ link.slug }` }
+                    className='text-sm font-medium text-gray-700 hover:text-emerald-700'
+                  >
+                    {link.name}
+                  </Link>
+                  :
+                  ''
+                )
+            
+            })
+          }
         </nav>
       </header>
     </>
